@@ -27,7 +27,7 @@ class UpdateOrderStatus implements ShouldQueue
             Order::whereIn('status', [OrderStatus::PENDING, OrderStatus::SHIPPED])
                 ->chunk(100, function ($orders) use ($orderAction) {
                     foreach ($orders as $order) {
-                        $orderAction->handle($order, config('services.external_api.url'));
+                        $orderAction->handle($order, $this->externalApiUrl);
                     }
                 });
         } catch (\Exception $e) {
