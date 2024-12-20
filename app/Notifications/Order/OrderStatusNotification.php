@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Order;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -13,10 +14,7 @@ class OrderStatusNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public Order $order) {}
 
     /**
      * Get the notification's delivery channels.
