@@ -3,6 +3,8 @@
 namespace Tests\Unit\Order;
 
 use App\Enums\Order\OrderStatus;
+use App\Jobs\Order\UpdateOrderStatus;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -32,7 +34,6 @@ class OrderApiTest extends TestCase
             ->assertJsonFragment(['order_number' => self::ORDER_NUMBER, 'status' => OrderStatus::PENDING]);
     }
 
-    //test if orders can be listed
     public function test_orders_can_be_listed()
     {
         $this->createOrder(self::ORDER_NUMBER);
@@ -41,6 +42,18 @@ class OrderApiTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonFragment(['order_number' => self::ORDER_NUMBER, 'status' => OrderStatus::PENDING]);
+    }
+
+    //test update order status
+    public function test_order_status_can_be_updated()
+    {
+        $order = $this->createOrder(self::ORDER_NUMBER);
+
+        Queue::fake();
+
+        UpdateOrderStatus::dispatch($order->getOriginalContent()->order_number);
+
+        Queue::assertPushed(UpdateOrderStatus::class);
     }
 
     protected function createOrder(string $orderNumber): TestResponse
