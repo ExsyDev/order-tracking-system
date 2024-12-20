@@ -1,0 +1,276 @@
+name: Order
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/orders
+    metadata:
+      groupName: Order
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get orders list'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: 'Status of the order.'
+        required: false
+        example: pending
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      status: pending
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "order_number": "12345",
+                      "total_amount": 100.5,
+                      "status": "pending",
+                      "items": [
+                          {
+                              "id": 1,
+                              "name": null,
+                              "quantity": 1,
+                              "price": 50.25
+                          },
+                          {
+                              "id": 2,
+                              "name": null,
+                              "quantity": 2,
+                              "price": 25.12
+                          }
+                      ],
+                      "created_at": "2024-12-20T16:11:24.000000Z",
+                      "updated_at": "2024-12-20T16:11:24.000000Z"
+                  }
+              ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/orders
+    metadata:
+      groupName: Order
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create order'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_number:
+        name: order_number
+        description: 'Order number.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      total_amount:
+        name: total_amount
+        description: 'Total amount of the order.'
+        required: true
+        example: 100.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      items:
+        name: items
+        description: 'Items of the order.'
+        required: true
+        example:
+          -
+            name: item1
+            price: 10.0
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'items[].product_name':
+        name: 'items[].product_name'
+        description: ''
+        required: true
+        example: vel
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'items[].quantity':
+        name: 'items[].quantity'
+        description: 'Must be at least 1.'
+        required: true
+        example: 85
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'items[].price':
+        name: 'items[].price'
+        description: 'Must be at least 0.'
+        required: true
+        example: 11
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      order_number: '123456'
+      total_amount: 100.0
+      items:
+        -
+          name: item1
+          price: 10.0
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |
+          {
+              "data": {
+                  "id": 1,
+                  "order_number": "12345",
+                  "total_amount": 100.5,
+                  "status": "pending",
+                  "items": [
+                      {
+                          "id": 1,
+                          "name": null,
+                          "quantity": 1,
+                          "price": 50.25
+                      },
+                      {
+                          "id": 2,
+                          "name": null,
+                          "quantity": 2,
+                          "price": 25.12
+                      }
+                  ],
+                  "created_at": "2024-12-20T16:05:18.000000Z",
+                  "updated_at": "2024-12-20T16:05:18.000000Z"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/orders/{orderNumber}'
+    metadata:
+      groupName: Order
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show order'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderNumber:
+        name: orderNumber
+        description: 'Order number.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      orderNumber: '123456'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "data": {
+                  "id": 1,
+                  "order_number": "12345",
+                  "total_amount": 100.5,
+                  "status": "pending",
+                  "items": [
+                      {
+                          "id": 1,
+                          "name": null,
+                          "quantity": 1,
+                          "price": 50.25
+                      },
+                      {
+                          "id": 2,
+                          "name": null,
+                          "quantity": 2,
+                          "price": 25.12
+                      }
+                  ],
+                  "created_at": "2024-12-20T16:06:13.000000Z",
+                  "updated_at": "2024-12-20T16:06:13.000000Z"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,0 +1,147 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "bee352b4-a4a3-4e8b-b21e-e91cf4d9aa08",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Order",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get orders list",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"status\":\"pending\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"order_number\": \"12345\",\n            \"total_amount\": 100.5,\n            \"status\": \"pending\",\n            \"items\": [\n                {\n                    \"id\": 1,\n                    \"name\": null,\n                    \"quantity\": 1,\n                    \"price\": 50.25\n                },\n                {\n                    \"id\": 2,\n                    \"name\": null,\n                    \"quantity\": 2,\n                    \"price\": 25.12\n                }\n            ],\n            \"created_at\": \"2024-12-20T16:11:24.000000Z\",\n            \"updated_at\": \"2024-12-20T16:11:24.000000Z\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_number\":\"123456\",\"total_amount\":100,\"items\":[{\"name\":\"item1\",\"price\":10}]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"order_number\": \"12345\",\n        \"total_amount\": 100.5,\n        \"status\": \"pending\",\n        \"items\": [\n            {\n                \"id\": 1,\n                \"name\": null,\n                \"quantity\": 1,\n                \"price\": 50.25\n            },\n            {\n                \"id\": 2,\n                \"name\": null,\n                \"quantity\": 2,\n                \"price\": 25.12\n            }\n        ],\n        \"created_at\": \"2024-12-20T16:05:18.000000Z\",\n        \"updated_at\": \"2024-12-20T16:05:18.000000Z\"\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders\/:orderNumber",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders\/:orderNumber",
+                            "variable": [
+                                {
+                                    "id": "orderNumber",
+                                    "key": "orderNumber",
+                                    "value": "123456",
+                                    "description": "Order number."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"order_number\": \"12345\",\n        \"total_amount\": 100.5,\n        \"status\": \"pending\",\n        \"items\": [\n            {\n                \"id\": 1,\n                \"name\": null,\n                \"quantity\": 1,\n                \"price\": 50.25\n            },\n            {\n                \"id\": 2,\n                \"name\": null,\n                \"quantity\": 2,\n                \"price\": 25.12\n            }\n        ],\n        \"created_at\": \"2024-12-20T16:06:13.000000Z\",\n        \"updated_at\": \"2024-12-20T16:06:13.000000Z\"\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
