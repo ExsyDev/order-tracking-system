@@ -16,6 +16,6 @@ class SendOrderStatusNotification
      */
     public function handle(object $event): void
     {
-        $event->order->user->notify(new SendOrderStatusNotification($event->order));
+        //$event->order->user->notify(new SendOrderStatusNotification($event->order));
     }
 }
