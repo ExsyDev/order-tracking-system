@@ -8,7 +8,7 @@ use App\Events\Order\OrderStatusUpdated;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 
-class UpdateOrderStatus extends CoreAction
+class UpdateOrderStatusAction extends CoreAction
 {
     /**
      * Update the order status

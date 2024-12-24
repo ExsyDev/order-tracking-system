@@ -48,7 +48,7 @@ class UpdateOrderStatusTest extends TestCase
     {
         $this->fakeApiResponse(OrderStatus::SHIPPED->value);
 
-        $action = new \App\Actions\Order\UpdateOrderStatus();
+        $action = new \App\Actions\Order\UpdateOrderStatusAction();
         $action->handle($this->order, self::EXTERNAL_API_URL);
 
         $this->order->refresh();
@@ -80,7 +80,7 @@ class UpdateOrderStatusTest extends TestCase
      */
     protected function mockAction(Order $order, string $expectedStatus): MockInterface
     {
-        return $this->partialMock(\App\Actions\Order\UpdateOrderStatus::class, function ($mock) use ($order, $expectedStatus) {
+        return $this->partialMock(\App\Actions\Order\UpdateOrderStatusAction::class, function ($mock) use ($order, $expectedStatus) {
             $mock->shouldReceive('handle')
                 ->once()
                 ->withArgs(function ($mockOrder, $url) use ($order) {

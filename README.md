@@ -11,8 +11,7 @@
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/order-tracking-system.git
-    cd order-tracking-system
+    git clone https://github.com/ExsyDev/order-tracking-system.git && cd order-tracking-system
     ```
 
 2. **Copy the example environment file and update the environment variables:**

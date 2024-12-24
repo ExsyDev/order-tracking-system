@@ -22,9 +22,7 @@ class CreateOrderAction extends CoreAction
                 'total_amount' => $data['total_amount'],
             ]);
 
-            foreach ($data['items'] as $item) {
-                $order->items()->create($item);
-            }
+            $order->items()->createMany($data['items']);
 
             return $order->load('items');
         });

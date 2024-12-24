@@ -6,7 +6,7 @@ use App\Enums\Order\OrderStatus;
 use App\Models\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use \App\Actions\Order\UpdateOrderStatus as UpdateOrderStatusAction;
+use \App\Actions\Order\UpdateOrderStatusAction as UpdateOrderStatusAction;
 use Illuminate\Support\Facades\Log;
 
 class UpdateOrderStatus implements ShouldQueue
@@ -31,7 +31,7 @@ class UpdateOrderStatus implements ShouldQueue
                     }
                 });
         } catch (\Exception $e) {
-            Log::error('Error in UpdateOrderStatus job: ' . $e->getMessage());
+            Log::error('Error in UpdateOrderStatusAction job: ' . $e->getMessage());
         }
     }
 }
