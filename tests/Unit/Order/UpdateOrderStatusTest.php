@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Order;
 
+use App\Actions\Order\UpdateOrderStatusAction;
 use App\Enums\Order\OrderStatus;
 use App\Jobs\Order\UpdateOrderStatus;
 use App\Models\Order;
@@ -48,7 +49,7 @@ class UpdateOrderStatusTest extends TestCase
     {
         $this->fakeApiResponse(OrderStatus::SHIPPED->value);
 
-        $action = new \App\Actions\Order\UpdateOrderStatusAction();
+        $action = new UpdateOrderStatusAction();
         $action->handle($this->order, self::EXTERNAL_API_URL);
 
         $this->order->refresh();
@@ -80,7 +81,7 @@ class UpdateOrderStatusTest extends TestCase
      */
     protected function mockAction(Order $order, string $expectedStatus): MockInterface
     {
-        return $this->partialMock(\App\Actions\Order\UpdateOrderStatusAction::class, function ($mock) use ($order, $expectedStatus) {
+        return $this->partialMock(UpdateOrderStatusAction::class, function ($mock) use ($order, $expectedStatus) {
             $mock->shouldReceive('handle')
                 ->once()
                 ->withArgs(function ($mockOrder, $url) use ($order) {

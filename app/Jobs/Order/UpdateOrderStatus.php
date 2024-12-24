@@ -6,7 +6,7 @@ use App\Enums\Order\OrderStatus;
 use App\Models\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use \App\Actions\Order\UpdateOrderStatusAction as UpdateOrderStatusAction;
+use App\Actions\Order\UpdateOrderStatusAction;
 use Illuminate\Support\Facades\Log;
 
 class UpdateOrderStatus implements ShouldQueue
