@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UpdateOrderStatusTest extends TestCase
@@ -31,7 +32,7 @@ class UpdateOrderStatusTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_uses_action_to_update_order_status()
     {
         $mockAction = $this->mockAction($this->order, OrderStatus::SHIPPED->value);
@@ -44,7 +45,7 @@ class UpdateOrderStatusTest extends TestCase
         $this->assertEquals(OrderStatus::SHIPPED, $this->order->status);
     }
 
-    /** @test */
+    #[Test]
     public function it_correctly_updates_order_status_via_action()
     {
         $this->fakeApiResponse(OrderStatus::SHIPPED->value);
@@ -57,7 +58,7 @@ class UpdateOrderStatusTest extends TestCase
         $this->assertEquals(OrderStatus::SHIPPED, $this->order->status);
     }
 
-    /** @test */
+    #[Test]
     public function it_handles_api_errors_gracefully()
     {
         $this->fakeApiResponse(null, 500);

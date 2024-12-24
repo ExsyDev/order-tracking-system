@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Order;
+namespace Feature;
 
 use App\Enums\Order\OrderStatus;
 use Illuminate\Testing\TestResponse;
@@ -13,7 +13,6 @@ class OrderApiTest extends TestCase
      */
     const ORDER_NUMBER = '12345';
 
-    /** @test */
     public function test_order_can_be_created()
     {
         $testOrder = $this->createOrder(self::ORDER_NUMBER);
@@ -23,7 +22,6 @@ class OrderApiTest extends TestCase
         $this->assertDatabaseHas('orders', ['order_number' => self::ORDER_NUMBER]);
     }
 
-    /** @test */
     public function test_order_can_be_shown()
     {
         $this->createOrder(self::ORDER_NUMBER);
@@ -34,7 +32,6 @@ class OrderApiTest extends TestCase
             ->assertJsonFragment(['order_number' => self::ORDER_NUMBER, 'status' => OrderStatus::PENDING]);
     }
 
-    /** @test */
     public function test_orders_can_be_listed()
     {
         $this->createOrder(self::ORDER_NUMBER);
@@ -45,7 +42,10 @@ class OrderApiTest extends TestCase
             ->assertJsonFragment(['order_number' => self::ORDER_NUMBER, 'status' => OrderStatus::PENDING]);
     }
 
-    /** @test */
+    /**
+     * @param string $orderNumber
+     * @return TestResponse
+     */
     protected function createOrder(string $orderNumber): TestResponse
     {
         return $this->postJson('/api/orders', [
